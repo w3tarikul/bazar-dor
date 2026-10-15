@@ -42,3 +42,4 @@ next-env.d.ts
 
 # design resources (local only)
 /resources
+!.env.example
