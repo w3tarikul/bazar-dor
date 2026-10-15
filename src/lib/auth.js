@@ -32,8 +32,8 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     minPasswordLength: 8,
-    // Sign-up sends the user to /signin instead of logging them in.
-    autoSignIn: false,
+    // autoSignIn stays on: turning it off makes BetterAuth hide duplicate emails behind a fake
+    // success. The sign-up form signs the new session out and sends the user to /signin instead.
   },
   socialProviders,
   plugins: [nextCookies()],

@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
-import { authErrorMessage, signUp } from "@/lib/auth-client";
+import { authErrorMessage, signOut, signUp } from "@/lib/auth-client";
 import { Field, FormAlert, safeCallback } from "@/components/auth/AuthShell";
 import SocialButtons from "@/components/auth/SocialButtons";
 
@@ -53,15 +53,17 @@ export default function SignUpForm() {
       email: values.email.trim(),
       password: values.password,
     });
-    setLoading(false);
-
     if (error) {
+      setLoading(false);
       const message = authErrorMessage(error);
       setFormError(message);
       toast.error(message);
       return;
     }
 
+    // Registration should end on the sign-in page, so drop the auto-created session.
+    await signOut();
+    setLoading(false);
     toast.success("অ্যাকাউন্ট তৈরি হয়েছে! এবার সাইন ইন করুন।");
     router.push(rawCallback ? `/signin?callbackURL=${encodeURIComponent(callbackURL)}` : "/signin");
   }
