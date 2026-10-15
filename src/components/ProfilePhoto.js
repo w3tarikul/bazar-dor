@@ -9,7 +9,6 @@ import Avatar from "@/components/Avatar";
 const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
 const AVATAR_SIZE = 256;
 
-/** Center-crop the image to a square and shrink it to a small JPEG data URL. */
 async function toAvatarDataUrl(file) {
   const bitmap = await createImageBitmap(file);
   const side = Math.min(bitmap.width, bitmap.height);
@@ -17,7 +16,7 @@ async function toAvatarDataUrl(file) {
   canvas.width = AVATAR_SIZE;
   canvas.height = AVATAR_SIZE;
   const ctx = canvas.getContext("2d");
-  ctx.fillStyle = "#fff"; // transparent PNGs would otherwise turn black as JPEG
+  ctx.fillStyle = "#fff";
   ctx.fillRect(0, 0, AVATAR_SIZE, AVATAR_SIZE);
   ctx.drawImage(
     bitmap,
@@ -53,7 +52,7 @@ export default function ProfilePhoto({ user }) {
 
   async function handleFile(e) {
     const file = e.target.files?.[0];
-    e.target.value = ""; // allow picking the same file again
+    e.target.value = "";
     if (!file) return;
 
     if (!file.type.startsWith("image/")) {

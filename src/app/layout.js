@@ -14,8 +14,6 @@ const hindSiliguri = Hind_Siliguri({
   display: "swap",
 });
 
-// Hind Siliguri draws "১" as a tiny hook at regular/medium weights, so the Bengali digits
-// (০–৯ only) come from a 4 KB Noto Sans Bengali subset instead.
 const bengaliDigits = localFont({
   src: "../fonts/noto-sans-bengali-digits.woff2",
   variable: "--font-bn-digits",

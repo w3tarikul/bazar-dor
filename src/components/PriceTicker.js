@@ -30,7 +30,6 @@ export default async function PriceTicker() {
   const products = (await getProducts()).filter((p) => p.change?.dir !== "flat");
   if (products.length === 0) return null;
 
-  // The list is rendered twice so translating by -50% loops seamlessly.
   return (
     <div
       className="ticker overflow-hidden border-b border-base-300 bg-base-100"

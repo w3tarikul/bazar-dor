@@ -45,7 +45,6 @@ export function FormAlert({ message }) {
   );
 }
 
-/** Only allow same-site relative callback paths. */
 export function safeCallback(value) {
   return value && value.startsWith("/") && !value.startsWith("//") ? value : "/";
 }

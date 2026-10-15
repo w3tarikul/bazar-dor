@@ -59,7 +59,6 @@ async function ProductDetails({ params }) {
         </ul>
       </div>
 
-      {/* Summary */}
       <section className="rounded-2xl border border-base-300 bg-base-100 p-5">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-4">
@@ -106,7 +105,6 @@ async function ProductDetails({ params }) {
         </div>
       </section>
 
-      {/* Price summary + market table */}
       <section className="rounded-2xl border border-base-300 bg-base-100 p-5">
         <h2 className="mb-4 text-lg font-bold">দামের সারসংক্ষেপ</h2>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">

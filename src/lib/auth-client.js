@@ -14,7 +14,6 @@ const ERROR_MESSAGES = {
   PROVIDER_NOT_FOUND: "এই সোশ্যাল লগইন এখনো চালু করা হয়নি।",
 };
 
-/** Turn a BetterAuth error into a Bengali message. */
 export function authErrorMessage(error) {
   if (!error) return "কিছু একটা সমস্যা হয়েছে, আবার চেষ্টা করুন।";
   return (

@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSessionCookie } from "better-auth/cookies";
 
-// Optimistic check only: pages verify the session again on the server.
 export function proxy(request) {
   if (getSessionCookie(request)) return NextResponse.next();
 

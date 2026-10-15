@@ -47,7 +47,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Price direction colours: up = red (costlier), down = green (cheaper) */
 .price-up {
   color: var(--color-error);
 }
@@ -58,7 +57,6 @@ html {
   color: var(--color-base-content);
 }
 
-/* Infinite price ticker */
 @keyframes ticker-scroll {
   from {
     transform: translateX(0);

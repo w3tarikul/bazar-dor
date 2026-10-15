@@ -14,7 +14,6 @@ export default function SortableProducts({ products }) {
   const [sort, setSort] = useState("default");
 
   const compare = SORTS[sort].compare;
-  // bnToNumber makes the sort numeric even if prices ever arrive as Bengali-digit strings.
   const sorted = compare
     ? [...products].sort((a, b) => compare(bnToNumber(a.today), bnToNumber(b.today)))
     : products;

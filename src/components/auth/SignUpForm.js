@@ -61,7 +61,6 @@ export default function SignUpForm() {
       return;
     }
 
-    // Registration should end on the sign-in page, so drop the auto-created session.
     await signOut();
     setLoading(false);
     toast.success("অ্যাকাউন্ট তৈরি হয়েছে! এবার সাইন ইন করুন।");

@@ -1,7 +1,6 @@
 import "server-only";
 import { cacheLife } from "next/cache";
 
-// Main API first, then the two mirrors as fallbacks.
 const API_BASES = [
   process.env.API_BASE_URL ?? "https://openapi.programming-hero.com/api/bazardor",
   process.env.API_BASE_URL_1 ?? "https://api.api-store.workers.dev/api/bazardor",
@@ -51,7 +50,6 @@ export async function getProductsByCategory(slug) {
   return Array.isArray(data) ? data : [];
 }
 
-// The API only resolves single products by numeric id, so look slugs up in the full list.
 export async function getProductBySlug(slug) {
   const products = await getProducts();
   return products.find((p) => p.slug === slug) ?? null;
@@ -66,7 +64,6 @@ export function topMovers(products, dir, limit = 6) {
     .slice(0, limit);
 }
 
-/** Price summary across all markets for the details page. */
 export function marketStats(product) {
   const markets = (product.markets ?? []).map((m) => ({
     ...m,

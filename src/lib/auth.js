@@ -4,8 +4,6 @@ import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { nextCookies } from "better-auth/next-js";
 import { MongoClient } from "mongodb";
 
-// MongoClient only connects on first query, so a placeholder URI keeps `next build` working
-// when the env var is missing; real requests will fail loudly until MONGODB_URI is set.
 const client = new MongoClient(
   process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/bazardor",
 );
@@ -32,8 +30,6 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     minPasswordLength: 8,
-    // autoSignIn stays on: turning it off makes BetterAuth hide duplicate emails behind a fake
-    // success. The sign-up form signs the new session out and sends the user to /signin instead.
   },
   socialProviders,
   plugins: [nextCookies()],

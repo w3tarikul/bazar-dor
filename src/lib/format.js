@@ -8,12 +8,10 @@ const UNIT_BN = {
   piece: "পিস",
 };
 
-/** Replace ASCII digits in any value with Bengali digits. */
 export function toBnDigits(value) {
   return String(value).replace(/[0-9]/g, (d) => BN_DIGITS[d]);
 }
 
-/** Parse a string that may contain Bengali digits / commas into a number. */
 export function bnToNumber(value) {
   if (typeof value === "number") return value;
   const ascii = String(value)
@@ -23,7 +21,6 @@ export function bnToNumber(value) {
   return Number.isNaN(parsed) ? 0 : parsed;
 }
 
-/** 1850 → "১,৮৫০" (keeps up to 2 decimals when present). */
 export function formatPrice(value) {
   const hasFraction = !Number.isInteger(value);
   return new Intl.NumberFormat("bn-BD", {
@@ -32,7 +29,6 @@ export function formatPrice(value) {
   }).format(value);
 }
 
-/** 2.1 → "২.১" (always one decimal, sign removed). */
 export function formatPct(pct) {
   return toBnDigits(Math.abs(Number(pct) || 0).toFixed(1));
 }
@@ -51,7 +47,6 @@ export function changeMeta(dir) {
   return CHANGE_META[dir] ?? CHANGE_META.flat;
 }
 
-/** "বৃহস্পতিবার, ১৫ অক্টোবর, ২০২৬" in Dhaka time. */
 export function bnDate(date = new Date()) {
   return new Intl.DateTimeFormat("bn-BD", {
     weekday: "long",

@@ -30,7 +30,6 @@ export default function SignInForm() {
   const [formError, setFormError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Tell users why they landed here after hitting a protected page.
   useEffect(() => {
     if (rawCallback) {
       toast.error("এই পাতাটি দেখতে আগে সাইন ইন করুন।", { id: "protected-redirect" });
