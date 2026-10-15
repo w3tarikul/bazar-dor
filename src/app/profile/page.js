@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import { requireUser } from "@/lib/session";
-import Avatar from "@/components/Avatar";
+import ProfilePhoto from "@/components/ProfilePhoto";
 import SignOutButton from "@/components/SignOutButton";
 
 export const metadata = { title: "আমার প্রোফাইল" };
@@ -29,7 +29,7 @@ async function ProfileContent() {
       <section className="rounded-2xl border border-base-300 bg-base-100 p-5">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex min-w-0 items-center gap-4">
-            <Avatar user={user} size="size-20" textSize="text-3xl" rounded="rounded-2xl" />
+            <ProfilePhoto user={user} />
             <div className="min-w-0">
               <p className="truncate text-xl font-semibold">{user.name}</p>
               <p className="truncate text-base-content/60">{user.email}</p>
