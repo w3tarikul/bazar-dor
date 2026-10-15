@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🛒 বাজার দর (BazarDor)
 
-## Getting Started
+**প্রয়োজনীয় পণ্যের দাম এক নজরে।**
 
-First, run the development server:
+বাজার দর is a Bengali-first web app for tracking everyday market prices across Bangladesh. You can see today's prices for rice, lentils, oil, vegetables, fish, meat, eggs and dairy, and spices in one place. Each product shows how its price changed since yesterday, the minimum, maximum and average across markets, and a market-by-market breakdown from Dhaka, Chattogram, Rajshahi, Khulna, Sylhet and Mymensingh.
+
+চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার আজকের দাম — বাজারভিত্তিক বিস্তারিত, গড়, সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।
+
+---
+
+## ✨ Key Features
+
+1. **Live price ticker:** an infinitely scrolling strip under the navbar shows every product whose price moved today (`🍚 স্বর্ণমাছি চাল ১৪৮ টাকা/কেজি ▲ ২.১%`). It pauses on hover.
+2. **Top movers on the home page:** the six biggest risers (**আজ দাম বেড়েছে ▲**) and the six biggest fallers (**আজ দাম কমেছে ▼**), ranked by percentage change.
+3. **Category browsing with sorting:** each category (`/category/[slug]`) has a sort dropdown (ডিফল্ট / দাম: কম থেকে বেশি / দাম: বেশি থেকে কম). Sorting compares numeric values, so Bengali numerals sort correctly.
+4. **Product details page (protected):** shows today's price, the change since yesterday, a min/max/average price summary, and a **বাজারভিত্তিক আজকের দাম** table covering 12 markets.
+5. **Authentication with BetterAuth:** email/password sign up and sign in, plus Google and GitHub login. Sessions are stored in MongoDB Atlas.
+6. **Profile and update information:** a protected **আমার প্রোফাইল** page, plus a separate route (`/profile/update`) where users can change their name.
+7. **Fully Bengali UI:** Hind Siliguri font, Bengali digits (`১,৮৫০ টাকা`), and the Bangla date in the navbar.
+8. **Polished UX:** skeleton loaders, toast notifications (react-hot-toast) for auth and protected-route redirects, a friendly 404 page, and hover effects throughout.
+9. **Responsive:** works on mobile, tablet and desktop. The grid goes from 1 to 2 to 3 columns, the category bar and ticker scroll horizontally, and the hero stacks on small screens.
+
+---
+
+## 🛠️ Technologies Used
+
+| Technology | Purpose |
+| --- | --- |
+| [Next.js 16](https://nextjs.org/) (App Router, Cache Components) | Framework, routing, server rendering and caching |
+| [React 19](https://react.dev/) | UI library |
+| [Tailwind CSS 4](https://tailwindcss.com/) + [daisyUI 5](https://daisyui.com/) | Styling and the custom `bazardor` theme |
+| [BetterAuth](https://better-auth.com/) | Email/password, Google and GitHub authentication |
+| [MongoDB Atlas](https://www.mongodb.com/atlas) | User, session and account storage |
+| [react-hot-toast](https://react-hot-toast.com/) | Toast notifications |
+| `next/font` (Hind Siliguri) | Bengali typography |
+| [Vercel](https://vercel.com/) | Deployment |
+
+**Data source:** [Programming Hero Bazardor API](https://openapi.programming-hero.com/api/bazardor/products), with two fallback mirrors.
+
+---
+
+## 📁 Routes
+
+| Route | Description | Access |
+| --- | --- | --- |
+| `/` | Hero, top risers and fallers, all products with sort | Public |
+| `/category/[slug]` | Products in one category with sort | Public |
+| `/product/[slug]` | Product details, price summary and market table | 🔒 Login required |
+| `/signin`, `/signup` | Authentication | Public |
+| `/profile` | My profile and sign out | 🔒 Login required |
+| `/profile/update` | Update name | 🔒 Login required |
+
+---
+
+## 🚀 Getting Started
 
 ```bash
+git clone https://github.com/w3tarikul/bazar-dor.git
+cd bazar-dor
+npm install
+cp .env.example .env   # then fill in the values
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Description |
+| --- | --- |
+| `BETTER_AUTH_SECRET` | Random secret (`openssl rand -base64 32`) |
+| `BETTER_AUTH_URL` | App URL, e.g. `http://localhost:3000` or your Vercel domain |
+| `MONGODB_URI` | MongoDB Atlas connection string |
+| `MONGODB_DB` | Database name (default `bazardor`) |
+| `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | Google OAuth credentials |
+| `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET` | GitHub OAuth credentials |
 
-## Learn More
+OAuth callback URLs:
 
-To learn more about Next.js, take a look at the following resources:
+- Google: `<BETTER_AUTH_URL>/api/auth/callback/google`
+- GitHub: `<BETTER_AUTH_URL>/api/auth/callback/github`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📜 Scripts
 
-## Deploy on Vercel
+```bash
+npm run dev     # start the dev server
+npm run build   # production build
+npm run start   # run the production build
+npm run lint    # lint with ESLint
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+> সকল দাম সম্ভাব্য; বাজার অবস্থার ওপর নির্ভর করে পরিবর্তিত হয়।
