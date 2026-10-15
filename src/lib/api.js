@@ -2,9 +2,9 @@ import "server-only";
 import { cacheLife } from "next/cache";
 
 const API_BASES = [
-  process.env.API_BASE_URL ?? "https://openapi.programming-hero.com/api/bazardor",
-  process.env.API_BASE_URL_1 ?? "https://api.api-store.workers.dev/api/bazardor",
-  process.env.API_BASE_URL_2 ?? "https://api.abcz.workers.dev/api/bazardor",
+  "https://openapi.programming-hero.com/api/bazardor",
+  "https://api.api-store.workers.dev/api/bazardor",
+  "https://api.abcz.workers.dev/api/bazardor",
 ];
 
 async function fetchJson(path) {
