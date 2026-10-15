@@ -49,7 +49,7 @@ export default function SocialButtons({ callbackURL = "/", disabled }) {
           type="button"
           disabled={disabled || pending !== null}
           onClick={() => handleSocial(id)}
-          className="btn btn-outline flex-1 transition hover:-translate-y-0.5 hover:border-primary hover:bg-primary/5 hover:text-base-content"
+          className="btn btn-outline w-full gap-1.5 px-3 whitespace-nowrap sm:w-auto sm:flex-1 transition hover:-translate-y-0.5 hover:border-primary hover:bg-primary/5 hover:text-base-content"
         >
           {pending === id ? <span className="loading loading-spinner loading-xs" /> : <Icon />}
           {label} দিয়ে চালিয়ে যান
