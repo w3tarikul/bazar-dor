@@ -15,7 +15,7 @@
 3. **Category browsing with sorting:** each category (`/category/[slug]`) has a sort dropdown (ডিফল্ট / দাম: কম থেকে বেশি / দাম: বেশি থেকে কম). Sorting compares numeric values, so Bengali numerals sort correctly.
 4. **Product details page (protected):** shows today's price, the change since yesterday, a min/max/average price summary, and a **বাজারভিত্তিক আজকের দাম** table covering 12 markets.
 5. **Authentication with BetterAuth:** email/password sign up and sign in, plus Google and GitHub login. Sessions are stored in MongoDB Atlas.
-6. **Profile and update information:** a protected **আমার প্রোফাইল** page, plus a separate route (`/profile/update`) where users can change their name.
+6. **Profile and update information:** a protected **আমার প্রোফাইল** page where users can upload or remove a profile photo (resized in the browser to a small 256×256 image), plus a separate route (`/profile/update`) where users can change their name.
 7. **Fully Bengali UI:** Hind Siliguri font, Bengali digits (`১,৮৫০ টাকা`), and the Bangla date in the navbar.
 8. **Polished UX:** skeleton loaders, toast notifications (react-hot-toast) for auth and protected-route redirects, a friendly 404 page, and hover effects throughout.
 9. **Responsive:** works on mobile, tablet and desktop. The grid goes from 1 to 2 to 3 columns, the category bar and ticker scroll horizontally, and the hero stacks on small screens.
