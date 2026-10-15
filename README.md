@@ -58,11 +58,10 @@
 git clone https://github.com/w3tarikul/bazar-dor.git
 cd bazar-dor
 npm install
-cp .env.example .env   # then fill in the values
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Before running, create a `.env` file in the project root with the variables below. Then open [http://localhost:3000](http://localhost:3000).
 
 ### Environment variables
 
