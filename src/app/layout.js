@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { Hind_Siliguri } from "next/font/google";
+import localFont from "next/font/local";
 import Navbar from "@/components/Navbar";
 import PriceTicker from "@/components/PriceTicker";
 import Footer from "@/components/Footer";
@@ -11,6 +12,16 @@ const hindSiliguri = Hind_Siliguri({
   subsets: ["bengali", "latin"],
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
+});
+
+// Hind Siliguri draws "১" as a tiny hook at regular/medium weights, so the Bengali digits
+// (০–৯ only) come from a 4 KB Noto Sans Bengali subset instead.
+const bengaliDigits = localFont({
+  src: "../fonts/noto-sans-bengali-digits.woff2",
+  variable: "--font-bn-digits",
+  weight: "100 900",
+  display: "swap",
+  declarations: [{ prop: "unicode-range", value: "U+09E6-09EF" }],
 });
 
 export const metadata = {
@@ -39,7 +50,7 @@ function NavbarFallback() {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="bn" data-theme="bazardor" className={hindSiliguri.variable}>
+    <html lang="bn" data-theme="bazardor" className={`${bengaliDigits.variable} ${hindSiliguri.variable}`}>
       <body className="bg-base-200 font-sans text-base-content antialiased">
         <div className="flex min-h-screen flex-col">
           <Suspense fallback={<NavbarFallback />}>
